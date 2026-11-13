@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ApplyPilot — Profile & Options</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b0f17;
+      color: #f8fafc;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+    h1 { color: #38bdf8; margin-bottom: 4px; }
+    .sub { color: #94a3b8; font-size: 13px; margin-bottom: 24px; }
+    .card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    h2 { font-size: 16px; margin-top: 0; color: #e2e8f0; margin-bottom: 12px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 5px; font-weight: 600; }
+    input, textarea, select {
+      width: 100%;
+      box-sizing: border-box;
+      background: #0b0f17;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 9px 10px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .mono { font-family: monospace; }
+    button {
+      background: #10b981;
+      color: #022c22;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #34d399; }
+    .btn-sky { background: #0284c7; color: #fff; font-size: 12px; padding: 8px 14px; }
+    .btn-sky:hover { background: #0369a1; }
+    #save-msg { color: #34d399; font-size: 13px; margin-left: 12px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>⚡ ApplyPilot — Easy Setup (Visual Form + AI Converter)</h1>
+  <p class="sub">Fill in the normal boxes below or paste your plain-text resume! 100% stored locally in your browser.</p>
+
+  <div class="card">
+    <h2>🔑 1. Groq API Key (Free at console.groq.com/keys)</h2>
+    <div class="grid">
+      <div>
+        <label>Groq API Key</label>
+        <input type="password" id="api-key" placeholder="gsk_..." class="mono" />
+      </div>
+      <div>
+        <label>AI Model</label>
+        <input type="text" id="model-name" value="llama-3.3-70b-versatile" class="mono" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>👤 2. Quick Autofill Form (No JSON Required!)</h2>
+    <div class="grid">
+      <div><label>First Name</label><input id="f-firstName" /></div>
+      <div><label>Last Name</label><input id="f-lastName" /></div>
+      <div><label>Email</label><input id="f-email" /></div>
+      <div><label>Phone Number</label><input id="f-phone" /></div>
+      <div><label>City</label><input id="f-city" /></div>
+      <div><label>Country</label><input id="f-country" /></div>
+      <div><label>LinkedIn URL</label><input id="f-linkedin" /></div>
+      <div><label>GitHub URL</label><input id="f-github" /></div>
+      <div><label>Portfolio / Website</label><input id="f-portfolio" /></div>
+      <div><label>College / University</label><input id="f-college" /></div>
+      <div><label>Degree (e.g. B.Tech / B.S.)</label><input id="f-degree" /></div>
+      <div><label>Graduation Year</label><input id="f-gradYear" /></div>
+      <div><label>Current Company</label><input id="f-company" /></div>
+      <div><label>Current Job Title</label><input id="f-title" /></div>
+      <div><label>Years of Experience</label><input id="f-yoe" /></div>
+      <div><label>Expected Salary / CTC</label><input id="f-salary" /></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>✨ 3. Master Resume — Paste Normal Text to Auto-Convert</h2>
+    <label>Copy-paste your normal resume text (from PDF/Word) here and click Auto-Convert:</label>
+    <textarea id="raw-resume-text" rows="5" placeholder="Paste your normal resume text here..."></textarea>
+    <button type="button" id="convert-resume-btn" class="btn-sky">✨ Auto-Convert Plain Text to JSON using Groq AI</button>
+    <span id="convert-status" style="font-size:12px; margin-left:10px; color:#38bdf8;"></span>
+
+    <label style="margin-top:16px;">Master Resume JSON (Auto-filled by converter above, or edit directly):</label>
+    <textarea id="resume-json" rows="14" class="mono"></textarea>
+  </div>
+
+  <button id="save-btn">💾 Save All Settings Locally</button>
+  <span id="save-msg"></span>
+
+  <script src="options.js"></script>
+</body>
+</html>

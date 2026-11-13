@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "ApplyPilot — Local-First Autofill & AI Resume Tailor",
+  "version": "1.0.0",
+  "description": "Local-first browser extension for job application autofill and AI-assisted resume tailoring.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://api.groq.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "ApplyPilot"
+  },
+  "options_page": "options/options.html",
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/index.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "fill-page": {
+      "suggested_key": {
+        "default": "Alt+Shift+F",
+        "mac": "Alt+Shift+F"
+      },
+      "description": "Trigger ApplyPilot Autofill on current page"
+    },
+    "tailor-resume": {
+      "suggested_key": {
+        "default": "Alt+Shift+T",
+        "mac": "Alt+Shift+T"
+      },
+      "description": "Open Resume Tailoring panel for current job"
+    }
+  }
+}
